@@ -5,8 +5,6 @@ class Info {
 
   factory Info.fromJson(dynamic json) {
     return Info(
-      // HitProduct.fromJson(json['hits']),
-      // json['hits'].cast<HitProduct>() as List<HitProduct>,
       json['hits'].cast<HitProduct>(),
     );
   }
@@ -33,7 +31,7 @@ class ImageURL {
 
   ImageURL(this.medium);
 
-  // JSONからImageクラスに変換するファクトリコンストラクタ
+  // JSONからImageURLクラスに変換するファクトリコンストラクタ
   factory ImageURL.fromJson(dynamic json) {
     return ImageURL(json['medium'] as String);
   }

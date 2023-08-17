@@ -6,10 +6,8 @@ class ProductSizedBox extends StatelessWidget {
   const ProductSizedBox({
     super.key,
     required this.hitProduct,
-    // required this.info,
   });
 
-  // final Info info;
   final HitProduct hitProduct;
 
   @override

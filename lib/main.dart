@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:item_dex/models/product.dart';
-// import 'package:intl/intl.dart';
 import 'package:item_dex/screens/search_screen.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
 import 'package:item_dex/widgets/product_sizedbox.dart';
 
+// 非同期処理のためmain関数をFutureに変更
 Future<void> main() async {
-  // 非同期処理のためmain関数をFutureに変更
   await dotenv.load(fileName: '.env'); // .envファイルを読み込み
   runApp(const MainApp());
 }
 
-// final token = dotenv.env['YAHOO_API_APP_ID'];
 final itemDexText = ItemDexText();
 
 class MainApp extends StatelessWidget {

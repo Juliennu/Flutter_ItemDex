@@ -62,7 +62,6 @@ class _SearchScreenState extends State<SearchScreen> {
   Future<List<HitProduct>> searchProduct(String keyword) async {
     // 1. http通信に必要なデータを準備をする
     final String token = dotenv.env['YAHOO_API_APP_ID'] ?? '';
-    // アクセストークンを含めてリクエストを送信
     final uri = Uri.https(
       'shopping.yahooapis.jp',
       '/ShoppingWebService/V3/itemSearch',
@@ -77,50 +76,11 @@ class _SearchScreenState extends State<SearchScreen> {
     );
 
     if (response.statusCode == 200) {
-      // 3. 戻り値をHitsクラスの配列に変換
-      // 4. 変換したHitsクラスの配列を返す
-
-      // final List<dynamic> body = jsonDecode(response
-      //     .body); // ここでエラー _TypeError (type '_Map<String, dynamic>' is not a subtype of type 'List<dynamic>')
-      // print(body);
-      // return body.map((dynamic json) => Info.fromJson(json)).toList();
       final body = jsonDecode(response.body);
       final info = Info.fromJson(body);
-      print(info);
       return info.hitProducts;
     } else {
       return []; // 200以外の場合は空のリストを返す
     }
   }
-
-  // Future<List<Info>> searchProduct(String keyword) async {
-  //   // 1. http通信に必要なデータを準備をする
-  //   final String token = dotenv.env['YAHOO_API_APP_ID'] ?? '';
-  //   // アクセストークンを含めてリクエストを送信
-  //   final uri = Uri.https(
-  //     'shopping.yahooapis.jp',
-  //     '/ShoppingWebService/V3/itemSearch',
-  //     {
-  //       'appid': token,
-  //       'query': keyword,
-  //     },
-  //   );
-  //   // 2. Yahoo APIにリクエストを送る
-  //   final http.Response response = await http.get(
-  //     uri,
-  //   );
-  //   print('URL: ${response.request}');
-
-  //   if (response.statusCode == 200) {
-  //     // 3. 戻り値をHitsクラスの配列に変換
-  //     // 4. 変換したHitsクラスの配列を返す
-  //     final List<dynamic> body = jsonDecode(response
-  //         .body); // ここでエラー _TypeError (type '_Map<String, dynamic>' is not a subtype of type 'List<dynamic>')
-  //     print(body);
-
-  //     return body.map((dynamic json) => Info.fromJson(json)).toList();
-  //   } else {
-  //     return []; // 200以外の場合は空のリストを返す
-  //   }
-  // }
 }
