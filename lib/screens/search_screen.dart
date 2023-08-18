@@ -32,11 +32,13 @@ class _SearchScreenState extends State<SearchScreen> {
               horizontal: 20,
             ),
             child: TextField(
+              autocorrect: false,
+              autofocus: true,
               style: const TextStyle(
                 fontSize: 18,
               ),
               decoration: const InputDecoration(
-                hintText: '商品名を入力',
+                hintText: '商品名、メーカー名を入力',
                 icon: Icon(Icons.search),
               ),
               onSubmitted: (String value) async {
