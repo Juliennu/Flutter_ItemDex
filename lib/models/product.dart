@@ -3,9 +3,14 @@ class Info {
 
   Info(this.hitProducts);
 
-  factory Info.fromJson(dynamic json) {
+  factory Info.fromJson(Map<String, dynamic> json) {
+    final hitList = json['hits'];
+    List<HitProduct> hitProducts = hitList
+        .map((item) => HitProduct.fromJson(item))
+        .toList()
+        .cast<HitProduct>();
     return Info(
-      json['hits'].cast<HitProduct>(),
+      hitProducts,
     );
   }
 }
@@ -17,7 +22,7 @@ class HitProduct {
 
   HitProduct(this.name, this.image, this.brand);
 
-  factory HitProduct.fromJson(dynamic json) {
+  factory HitProduct.fromJson(Map<String, dynamic> json) {
     return HitProduct(
       json['name'] as String,
       ImageURL.fromJson(json['image']),
@@ -32,7 +37,7 @@ class ImageURL {
   ImageURL(this.medium);
 
   // JSONからImageURLクラスに変換するファクトリコンストラクタ
-  factory ImageURL.fromJson(dynamic json) {
+  factory ImageURL.fromJson(Map<String, dynamic> json) {
     return ImageURL(json['medium'] as String);
   }
 }
@@ -42,7 +47,7 @@ class Brand {
 
   Brand(this.name);
 
-  factory Brand.fromJson(dynamic json) {
+  factory Brand.fromJson(Map<String, dynamic> json) {
     return Brand(json['name'] as String);
   }
 }
