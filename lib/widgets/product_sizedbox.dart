@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:item_dex/models/product.dart';
 
 class ProductSizedBox extends StatelessWidget {
@@ -51,14 +50,8 @@ class ProductSizedBox extends StatelessWidget {
               ),
             ),
           ),
-          Text('${addComma(188800)} 円'), // TODO: あとで直す
         ],
       ),
     );
-  }
-
-  String addComma(int price) {
-    final formatter = NumberFormat('#,###');
-    return formatter.format(price);
   }
 }
