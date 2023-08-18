@@ -14,39 +14,45 @@ class ProductSizedBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // TODO: レイアウトは後で直す
-          children: [
-            SizedBox(
-              height: 80,
-              width: 80,
-              child: Image.network(hitProduct.image.medium),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  hitProduct.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+      child: Row(
+        children: [
+          SizedBox(
+            height: 80,
+            width: 80,
+            child: Image.network(hitProduct.image.medium),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    hitProduct.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  hitProduct.brand.name,
-                  style: const TextStyle(
-                    fontSize: 17,
+                  const SizedBox(
+                    height: 4,
                   ),
-                ),
-              ],
+                  Text(
+                    hitProduct.brand.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Text('${addComma(188800)} 円'), // TODO: あとで直す
-          ],
-        ),
+          ),
+          Text('${addComma(188800)} 円'), // TODO: あとで直す
+        ],
       ),
     );
   }
