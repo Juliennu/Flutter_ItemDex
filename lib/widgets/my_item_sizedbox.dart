@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:item_dex/models/product.dart';
-import 'package:item_dex/screens/item_detail_screen.dart';
 
 class MyItemSizedBox extends StatelessWidget {
+  final HitProduct hitProduct;
+  final Function myItemTappedCallback;
+
   const MyItemSizedBox({
     super.key,
     required this.hitProduct,
+    required this.myItemTappedCallback,
   });
-
-  final HitProduct hitProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -85,13 +86,7 @@ class MyItemSizedBox extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          //　TODO: アイテム詳細画面へ遷移
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ItemDetailScreen(),
-            ),
-          );
+          myItemTappedCallback();
         },
         child: row,
       ),
