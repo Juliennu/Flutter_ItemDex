@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:item_dex/models/product.dart';
+import 'package:item_dex/models/product_data.dart';
+import 'package:item_dex/screens/item_detail_screen.dart';
 import 'package:item_dex/screens/search_screen.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
-import 'package:item_dex/widgets/product_sizedbox.dart';
+import 'package:item_dex/widgets/my_item_sizedbox.dart';
+import 'package:provider/provider.dart';
 
 // 非同期処理のためmain関数をFutureに変更
 Future<void> main() async {
@@ -11,18 +13,19 @@ Future<void> main() async {
   runApp(const MainApp());
 }
 
-final itemDexText = ItemDexText();
-
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return ChangeNotifierProvider(
+      create: (context) => ProductData(),
+      child: MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        home: const MyHomePage(),
       ),
-      home: const MyHomePage(),
     );
   }
 }
@@ -32,32 +35,37 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget createRow() {
-      return ProductSizedBox(
-        hitProduct: HitProduct(
-          'name',
-          ImageURL(
-              'https://firebasestorage.googleapis.com/v0/b/gs-expansion-test.appspot.com/o/unknown_person.png?alt=media'),
-          Brand('brand'),
-        ),
-      );
-    }
+    var appState = context.watch<ProductData>();
+    final itemDexText = ItemDexText();
 
     return Scaffold(
       appBar: AppBar(
-        title: itemDexText.createHeaderTitle('Item Dex'),
+        title: itemDexText.createHeaderTitle('マイアイテム'),
       ),
-      body: Column(
-        children: [
-          createRow(),
-          createRow(),
-        ],
+      body: ListView(
+        children: appState.myItems
+            .map((myItem) => MyItemSizedBox(
+                  hitProduct: myItem,
+                  myItemTappedCallback: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ItemDetailScreen(
+                          myItem: myItem,
+                        ),
+                      ),
+                    );
+                  },
+                ))
+            .toList(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const SearchScreen()),
+            MaterialPageRoute(
+              builder: (context) => const SearchScreen(),
+            ),
           );
         },
         child: const Icon(Icons.add),
