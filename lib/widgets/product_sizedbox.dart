@@ -2,21 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:item_dex/models/product.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-List<HitProduct> myItems = [];
+class ProductSizedBox extends StatelessWidget {
+  final HitProduct hitProduct;
+  final Function dialogButtonOnTapCallback;
 
-class ProductSizedBox extends StatefulWidget {
   const ProductSizedBox({
     super.key,
     required this.hitProduct,
+    required this.dialogButtonOnTapCallback,
   });
 
-  final HitProduct hitProduct;
-
-  @override
-  State<ProductSizedBox> createState() => _ProductSizedBoxState();
-}
-
-class _ProductSizedBoxState extends State<ProductSizedBox> {
   @override
   Widget build(BuildContext context) {
     Row row = Row(
@@ -24,7 +19,7 @@ class _ProductSizedBoxState extends State<ProductSizedBox> {
         SizedBox(
           height: 80,
           width: 80,
-          child: Image.network(widget.hitProduct.image.medium),
+          child: Image.network(hitProduct.image.medium),
         ),
         Expanded(
           child: Padding(
@@ -35,7 +30,7 @@ class _ProductSizedBoxState extends State<ProductSizedBox> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.hitProduct.name,
+                  hitProduct.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -47,7 +42,7 @@ class _ProductSizedBoxState extends State<ProductSizedBox> {
                   height: 4,
                 ),
                 Text(
-                  widget.hitProduct.brand.name,
+                  hitProduct.brand.name,
                   style: const TextStyle(
                     fontSize: 16,
                   ),
@@ -61,16 +56,21 @@ class _ProductSizedBoxState extends State<ProductSizedBox> {
 
     Alert alert = Alert(
       context: context,
+      style: const AlertStyle(
+          animationType: AnimationType.grow,
+          animationDuration: Duration(
+            milliseconds: 150,
+          )),
       image: SizedBox(
         height: 150,
         width: 150,
-        child: Image.network(widget.hitProduct.image.medium),
+        child: Image.network(hitProduct.image.medium),
       ),
-      title: widget.hitProduct.name,
+      title: hitProduct.name,
       buttons: [
         DialogButton(
           child: const Text(
-            '所持品に追加',
+            'マイアイテムに追加',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -78,10 +78,8 @@ class _ProductSizedBoxState extends State<ProductSizedBox> {
             ),
           ),
           onPressed: () {
-            setState(() {
-              myItems.add(widget.hitProduct);
-              Navigator.pop(context);
-            });
+            dialogButtonOnTapCallback();
+            Navigator.pop(context);
           },
         ),
       ],
