@@ -23,73 +23,23 @@ class MyItemSizedBox extends StatelessWidget {
       }
     }
 
-    Row row = Row(
-      children: [
-        SizedBox(
-          height: 80,
-          width: 80,
-          child: Image.network(hitProduct.image.medium),
+    return ListTile(
+      leading: Image.network(hitProduct.image.medium),
+      title: Text(
+        hitProduct.name,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  hitProduct.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  hitProduct.brand.name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                Row(
-                  children: [
-                    // 購入価格
-                    Text(
-                      priceFormatter(hitProduct.purchasePrice),
-                    ),
-                    // const SizedBox(
-                    //   width: 8,
-                    // ),
-                    // // 購入日
-                    // const Text(
-                    //   '2023/8/22',
-                    // ),
-                    // 保証期限
-                    // const Text(
-                    //   '保証期限: 2024/8/22',
-                    // ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () {
-          myItemTappedCallback();
-        },
-        child: row,
       ),
+      subtitle: Text(
+        hitProduct.brand.name,
+      ),
+      onTap: () {
+        myItemTappedCallback();
+      },
     );
   }
 }
