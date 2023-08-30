@@ -12,7 +12,6 @@ class ItemDetailScreen extends StatelessWidget {
     final itemDexText = ItemDexText();
 
     return Consumer<HitProduct>(builder: (context, item, child) {
-      final purchaseDate = item.purchaseDate;
       return Scaffold(
         appBar: AppBar(
           title: itemDexText.createHeaderTitle('アイテム詳細'),
