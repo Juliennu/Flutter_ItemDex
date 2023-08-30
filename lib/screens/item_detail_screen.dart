@@ -5,11 +5,7 @@ import 'package:item_dex/widgets/my_item_detail_listtile.dart';
 import 'package:provider/provider.dart';
 
 class ItemDetailScreen extends StatelessWidget {
-  // final HitProduct myItem;
-  const ItemDetailScreen({
-    super.key,
-    // required this.myItem,
-  });
+  const ItemDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,6 @@ class ItemDetailScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        // myItem.name,
                         item.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -57,7 +52,6 @@ class ItemDetailScreen extends StatelessWidget {
                   child: SizedBox(
                     height: 150,
                     width: 150,
-                    // child: Image.network(myItem.image.medium),
                     child: Image.network(item.image.medium),
                   ),
                 ),
@@ -77,12 +71,7 @@ class ItemDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const MyItemDetailListTile(
-                    // myItem: item,
-                    // myItem: productData.currentMyItemInfo,
-                    // myItem: productData.updatePurchaseDate(myItem, date),
-                    // updatePurchaseDateCallback: (date) {},
-                    ),
+                const MyItemDetailListTile(),
                 const Text('購入価格'),
                 const Text('保証期限'),
                 const Text('メモ'),

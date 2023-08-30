@@ -47,21 +47,6 @@ class HitProduct extends ChangeNotifier {
     );
   }
 
-  // void updatePurchasePrice(int price) {
-  //   purchasePrice = price;
-  //   notifyListeners();
-  // }
-
-  // void updatePurchaseDate(DateTime date) {
-  //   purchaseDate = date;
-  //   notifyListeners();
-  // }
-
-  // void updateWarrantyPriod(DateTime date) {
-  //   warrantyPriod = date;
-  //   notifyListeners();
-  // }
-
   void updateMyItem(
     int? purchasePrice,
     DateTime purchaseDate,
@@ -72,12 +57,6 @@ class HitProduct extends ChangeNotifier {
     warrantyPriod = warrantyPriod;
     notifyListeners();
   }
-
-  // void updateMyItem(HitProduct item) {
-  //   purchaseDate = item.purchaseDate;
-  //   purchasePrice = item.purchasePrice;
-  //   warrantyPriod = item.warrantyPriod;
-  // }
 }
 
 class ImageURL {

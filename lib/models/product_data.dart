@@ -32,39 +32,6 @@ class ProductData extends ChangeNotifier {
     notifyListeners();
   }
 
-  // FIXME: name, image. brand など変更してほしくないところも変更できてしまうので、用途別にファンクションを分けたい。
-  // void updateItemDetail(HitProduct updatedProduct) {
-  //   _myItems.map((myItem) {
-  //     if (myItem.name == updatedProduct.name) {
-  //       myItem = updatedProduct;
-  //     }
-  //   });
-  //   notifyListeners();
-  // }
-
-  // void updatePurchasePrice(HitProduct item, int price) {
-  //   item.updatePurchasePrice(price);
-  //   notifyListeners();
-  // }
-
-  // void updatePurchaseDate(HitProduct item, DateTime date) {
-  //   item.updatePurchaseDate(date);
-  //   notifyListeners();
-  // }
-
-  // void updateWarrantyPriod(HitProduct item, DateTime date) {
-  //   item.updateWarrantyPriod(date);
-  //   notifyListeners();
-  // }
-
-  // HitProduct currentMyItemInfo(HitProduct item) {
-  //   return _myItems.first(item);
-  // }
-
-  // HitProduct currentMyItemInfo(HitProduct item) {
-  //   item.updateMyItem(item)
-  // }
-
   void updateMyItem(
     HitProduct item,
     int purchasePrice,

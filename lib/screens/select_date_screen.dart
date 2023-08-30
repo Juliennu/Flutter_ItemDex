@@ -4,19 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 class SelectDateScreen extends StatelessWidget {
-  // final HitProduct myItem;
-  // final Function(DateTime) updatePurchaseDate;
-
-  const SelectDateScreen({
-    super.key,
-    // required this.myItem,
-    // required this.updatePurchaseDate,
-  });
+  const SelectDateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // DateTime selectedDate = DateTime.now();
-
     return Consumer<HitProduct>(builder: (context, item, child) {
       return SizedBox(
         height: 250,
@@ -26,9 +17,6 @@ class SelectDateScreen extends StatelessWidget {
           onDateTimeChanged: (date) {
             item.updateMyItem(item.purchasePrice, date,
                 item.warrantyPriod); // TODO: 変更した箇所だけ引数を渡せるようにしたい
-            // myItem.updatePurchaseDate(date);
-            // updatePurchaseDate(date);
-            // selectedDate = value;
           },
         ),
       );
