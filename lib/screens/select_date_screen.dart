@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:item_dex/models/product.dart';
-import 'package:provider/provider.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 class SelectDateScreen extends StatelessWidget {
-  const SelectDateScreen({super.key});
+  final DateTime purchaseDate;
+  final int? purchasePrice;
+  final DateTime warrantyPriod;
+  final ValueChanged<DateTime> onDateTimeChanged;
+
+  const SelectDateScreen({
+    super.key,
+    required this.purchaseDate,
+    this.purchasePrice,
+    required this.warrantyPriod,
+    required this.onDateTimeChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HitProduct>(builder: (context, item, child) {
-      return SizedBox(
-        height: 250,
-        child: ScrollDatePicker(
-          selectedDate: item.purchaseDate,
-          locale: const Locale('ja', 'JP'), // TODO: 日本語表示に直す
-          onDateTimeChanged: (date) {
-            item.updateMyItem(item.purchasePrice, date,
-                item.warrantyPriod); // TODO: 変更した箇所だけ引数を渡せるようにしたい
-          },
-        ),
-      );
-    });
+    return SizedBox(
+      height: 250,
+      child: ScrollDatePicker(
+        selectedDate: purchaseDate,
+        locale: const Locale('ja', 'JP'), // TODO: 日本語表示に直す
+        onDateTimeChanged: onDateTimeChanged,
+      ),
+    );
   }
 }

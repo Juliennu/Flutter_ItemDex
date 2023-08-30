@@ -52,9 +52,9 @@ class HitProduct extends ChangeNotifier {
     DateTime purchaseDate,
     DateTime warrantyPriod,
   ) {
-    purchaseDate = purchaseDate;
-    purchasePrice = purchasePrice;
-    warrantyPriod = warrantyPriod;
+    this.purchaseDate = purchaseDate;
+    this.purchasePrice = purchasePrice;
+    this.warrantyPriod = warrantyPriod;
     notifyListeners();
   }
 }

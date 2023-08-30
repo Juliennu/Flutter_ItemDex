@@ -15,17 +15,27 @@ class MyItemDetailListTile extends StatelessWidget {
       return DateFormat.yMMMMd().format(date); // TODO: 日本語表示に直す
     }
 
-    return Consumer<HitProduct>(builder: (context, item, child) {
-      return ListTile(
+    return Consumer<HitProduct>(
+      builder: (context, item, child) {
+        return ListTile(
           leading: const Text('購入日'),
           trailing: Text(dateFormatter(item.purchaseDate)),
           onTap: () {
             // ハーフモーダル
             showModalBottomSheet(
               context: context,
-              builder: (context) => const SelectDateScreen(),
+              builder: (context) => SelectDateScreen(
+                purchaseDate: item.purchaseDate,
+                warrantyPriod: item.warrantyPriod,
+                onDateTimeChanged: (date) {
+                  item.updateMyItem(
+                      item.purchasePrice, date, item.warrantyPriod);
+                },
+              ),
             );
-          });
-    });
+          },
+        );
+      },
+    );
   }
 }
