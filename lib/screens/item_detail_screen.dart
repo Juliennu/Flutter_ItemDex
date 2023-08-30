@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:item_dex/models/product.dart';
+import 'package:item_dex/models/tile_type.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
 import 'package:item_dex/widgets/my_item_detail_listtile.dart';
 import 'package:provider/provider.dart';
@@ -71,10 +72,9 @@ class ItemDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const MyItemDetailListTile(),
-                const Text('購入価格'),
-                const Text('保証期限'),
-                const Text('メモ'),
+                const MyItemDetailListTile(tileType: TileType.purchasePrice),
+                const MyItemDetailListTile(tileType: TileType.purchaseDate),
+                const MyItemDetailListTile(tileType: TileType.warrantyPriod),
               ],
             )
           ],

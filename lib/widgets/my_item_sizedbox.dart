@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:item_dex/models/product.dart';
 
 class MyItemSizedBox extends StatelessWidget {
@@ -14,15 +13,6 @@ class MyItemSizedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String priceFormatter(int? price) {
-      if (price == null) {
-        return '';
-      } else {
-        final formatter = NumberFormat('#,###');
-        return '購入価格: ${formatter.format(price)} 円';
-      }
-    }
-
     return ListTile(
       leading: Image.network(hitProduct.image.medium),
       title: Text(
