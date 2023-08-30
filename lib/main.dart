@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:item_dex/models/product.dart';
 import 'package:item_dex/models/product_data.dart';
 import 'package:item_dex/screens/item_detail_screen.dart';
 import 'package:item_dex/screens/search_screen.dart';
@@ -20,12 +21,14 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => ProductData(),
-      child: MaterialApp(
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
-        home: const MyHomePage(),
-      ),
+      builder: (context, child) {
+        return MaterialApp(
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          ),
+          home: const MyHomePage(),
+        );
+      },
     );
   }
 }
@@ -49,11 +52,18 @@ class MyHomePage extends StatelessWidget {
                   myItemTappedCallback: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => ItemDetailScreen(
-                          myItem: myItem,
-                        ),
-                      ),
+                      MaterialPageRoute(builder: (context) {
+                        return ChangeNotifierProvider(
+                          create: (context) => HitProduct(
+                            name: myItem.name,
+                            brand: myItem.brand,
+                            image: myItem.image,
+                          ),
+                          builder: (context, child) {
+                            return const ItemDetailScreen();
+                          },
+                        );
+                      }),
                     );
                   },
                 ))
