@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:item_dex/models/product.dart';
+import 'package:item_dex/screens/select_date_screen.dart';
 
 enum TileType {
   purchasePrice,
@@ -19,7 +21,7 @@ extension TileTypeExtension on TileType {
     }
   }
 
-  String priceFormatter(int? price) {
+  String _priceFormatter(int? price) {
     if (price == null) {
       return '-';
     } else {
@@ -28,18 +30,41 @@ extension TileTypeExtension on TileType {
     }
   }
 
-  String dateFormatter(DateTime date) {
+  String _dateFormatter(DateTime date) {
     return DateFormat.yMMMMd().format(date); // TODO: 日本語表示に直す
   }
 
   String getTrailingText(HitProduct item) {
     switch (this) {
       case TileType.purchasePrice:
-        return priceFormatter(item.purchasePrice);
+        return _priceFormatter(item.purchasePrice);
       case TileType.purchaseDate:
-        return dateFormatter(item.purchaseDate);
+        return _dateFormatter(item.purchaseDate);
       case TileType.warrantyPriod:
-        return dateFormatter(item.warrantyPriod);
+        return _dateFormatter(item.warrantyPriod);
+    }
+  }
+
+  Widget getWidget(HitProduct item) {
+    switch (this) {
+      case TileType.purchasePrice:
+        return const Placeholder();
+      case TileType.purchaseDate:
+        return SelectDateScreen(
+          purchaseDate: item.purchaseDate,
+          warrantyPriod: item.warrantyPriod,
+          onDateTimeChanged: (date) {
+            item.updateMyItem(item.purchasePrice, date, item.warrantyPriod);
+          },
+        );
+      case TileType.warrantyPriod:
+        return SelectDateScreen(
+          purchaseDate: item.purchaseDate,
+          warrantyPriod: item.warrantyPriod,
+          onDateTimeChanged: (date) {
+            item.updateMyItem(item.purchasePrice, item.purchaseDate, date);
+          },
+        );
     }
   }
 }
