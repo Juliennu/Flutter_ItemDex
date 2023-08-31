@@ -34,9 +34,6 @@ class UpdatePriceScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextField(
-                  // controller: TextEditingController(
-                  //   text: updatedPrice.toString(),
-                  // ),
                   // 入力ソースを数値のみに制限
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
