@@ -13,23 +13,25 @@ class MyItemSizedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Image.network(hitProduct.image.medium),
-      title: Text(
-        hitProduct.name,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
+    return Card(
+      child: ListTile(
+        leading: Image.network(hitProduct.image.medium),
+        title: Text(
+          hitProduct.name,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        subtitle: Text(
+          hitProduct.brand.name,
+        ),
+        onTap: () {
+          myItemTappedCallback();
+        },
       ),
-      subtitle: Text(
-        hitProduct.brand.name,
-      ),
-      onTap: () {
-        myItemTappedCallback();
-      },
     );
   }
 }

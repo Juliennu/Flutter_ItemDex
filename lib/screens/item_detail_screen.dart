@@ -26,20 +26,24 @@ class ItemDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(4),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        item.name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                      // Textを改行して表示
+                      Flexible(
+                        child: Text(
+                          item.name,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
+                      const SizedBox(width: 8),
                       Text(
-                        // myItem.brand.name,
                         item.brand.name,
-                        maxLines: 2,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 16,
@@ -62,6 +66,7 @@ class ItemDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
+                  width: double.infinity, // 横幅いっぱいに広げる
                   color: Theme.of(context).colorScheme.primaryContainer,
                   padding: const EdgeInsets.all(4),
                   child: const Text(
