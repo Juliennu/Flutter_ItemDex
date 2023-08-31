@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:item_dex/models/product.dart';
 import 'package:item_dex/screens/select_date_screen.dart';
+import 'package:item_dex/screens/update_price_screen.dart';
 
 enum TileType {
   purchasePrice,
@@ -48,7 +49,11 @@ extension TileTypeExtension on TileType {
   Widget getWidget(HitProduct item) {
     switch (this) {
       case TileType.purchasePrice:
-        return const Placeholder();
+        return UpdatePriceScreen(
+          onOKPressed: (price) {
+            item.updateMyItem(price, item.purchaseDate, item.warrantyPriod);
+          },
+        );
       case TileType.purchaseDate:
         return SelectDateScreen(
           purchaseDate: item.purchaseDate,
