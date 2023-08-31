@@ -1,37 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:item_dex/models/product.dart';
-import 'package:item_dex/screens/select_date_screen.dart';
+import 'package:item_dex/models/tile_type.dart';
 import 'package:provider/provider.dart';
 
 class MyItemDetailListTile extends StatelessWidget {
+  final TileType tileType;
   const MyItemDetailListTile({
     super.key,
+    required this.tileType,
   });
 
   @override
   Widget build(BuildContext context) {
-    String dateFormatter(DateTime date) {
-      return DateFormat.yMMMMd().format(date); // TODO: 日本語表示に直す
-    }
-
     return Consumer<HitProduct>(
       builder: (context, item, child) {
         return ListTile(
-          leading: const Text('購入日'),
-          trailing: Text(dateFormatter(item.purchaseDate)),
+          leading: Text(tileType.title),
+          trailing: Text(tileType.getTrailingText(item)),
           onTap: () {
             // ハーフモーダル
             showModalBottomSheet(
               context: context,
-              builder: (context) => SelectDateScreen(
-                purchaseDate: item.purchaseDate,
-                warrantyPriod: item.warrantyPriod,
-                onDateTimeChanged: (date) {
-                  item.updateMyItem(
-                      item.purchasePrice, date, item.warrantyPriod);
-                },
-              ),
+              builder: (context) {
+                return tileType.getWidget(item);
+              },
             );
           },
         );
