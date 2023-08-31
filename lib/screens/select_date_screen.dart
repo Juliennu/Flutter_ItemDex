@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:item_dex/models/tile_type.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 class SelectDateScreen extends StatelessWidget {
-  final DateTime purchaseDate;
-  final int? purchasePrice;
-  final DateTime warrantyPriod;
+  final TileType tileType;
+  final DateTime selectedDate;
   final ValueChanged<DateTime> onDateTimeChanged;
 
   const SelectDateScreen({
     super.key,
-    required this.purchaseDate,
-    this.purchasePrice,
-    required this.warrantyPriod,
+    required this.tileType,
+    required this.selectedDate,
     required this.onDateTimeChanged,
   });
 
@@ -20,8 +19,13 @@ class SelectDateScreen extends StatelessWidget {
     return SizedBox(
       height: 250,
       child: ScrollDatePicker(
-        selectedDate: purchaseDate,
+        selectedDate: selectedDate,
         locale: const Locale('ja', 'JP'), // TODO: 日本語表示に直す
+        minimumDate: tileType == TileType.warrantyPriod
+            ? DateTime(2023, 1, 1)
+            : DateTime(1995, 1, 1),
+        maximumDate:
+            tileType == TileType.warrantyPriod ? DateTime(2040, 12, 31) : null,
         onDateTimeChanged: onDateTimeChanged,
       ),
     );

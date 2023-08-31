@@ -56,16 +56,16 @@ extension TileTypeExtension on TileType {
         );
       case TileType.purchaseDate:
         return SelectDateScreen(
-          purchaseDate: item.purchaseDate,
-          warrantyPriod: item.warrantyPriod,
+          tileType: TileType.purchaseDate,
+          selectedDate: item.purchaseDate,
           onDateTimeChanged: (date) {
             item.updateMyItem(item.purchasePrice, date, item.warrantyPriod);
           },
         );
       case TileType.warrantyPriod:
         return SelectDateScreen(
-          purchaseDate: item.purchaseDate,
-          warrantyPriod: item.warrantyPriod,
+          tileType: TileType.warrantyPriod,
+          selectedDate: item.warrantyPriod,
           onDateTimeChanged: (date) {
             item.updateMyItem(item.purchasePrice, item.purchaseDate, date);
           },
