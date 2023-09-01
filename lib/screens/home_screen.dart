@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:item_dex/models/product.dart';
 import 'package:item_dex/models/product_data.dart';
 import 'package:item_dex/screens/item_detail_screen.dart';
 import 'package:item_dex/screens/search_screen.dart';
@@ -27,15 +26,8 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) {
-                        return ChangeNotifierProvider(
-                          create: (context) => HitProduct(
-                            name: myItem.name,
-                            brand: myItem.brand,
-                            image: myItem.image,
-                          ),
-                          builder: (context, child) {
-                            return const ItemDetailScreen();
-                          },
+                        return ItemDetailScreen(
+                          item: myItem,
                         );
                       }),
                     );

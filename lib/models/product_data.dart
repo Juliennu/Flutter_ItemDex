@@ -32,13 +32,27 @@ class ProductData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateMyItem(
-    HitProduct item,
-    int purchasePrice,
-    DateTime purchaseDate,
-    DateTime warrantyPriod,
-  ) {
-    item.updateMyItem(purchasePrice, purchaseDate, warrantyPriod);
+  // Search item by ID
+  HitProduct searchMyItemWithID(String id) {
+    return _myItems.firstWhere((item) => item.id == id);
+  }
+
+  // Update my item details
+  void updatePurchasePrice(String id, int? purchasePrice) {
+    var item = _myItems.firstWhere((item) => item.id == id);
+    item.purchasePrice = purchasePrice;
+    notifyListeners();
+  }
+
+  void updatePurchaseDate(String id, DateTime purchaseDate) {
+    var item = _myItems.firstWhere((item) => item.id == id);
+    item.purchaseDate = purchaseDate;
+    notifyListeners();
+  }
+
+  void updateWarrantyPriod(String id, DateTime warrantyPriod) {
+    var item = _myItems.firstWhere((item) => item.id == id);
+    item.warrantyPriod = warrantyPriod;
     notifyListeners();
   }
 }
