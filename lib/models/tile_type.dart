@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:item_dex/models/product.dart';
+import 'package:item_dex/models/product_data.dart';
 import 'package:item_dex/screens/select_date_screen.dart';
 import 'package:item_dex/screens/update_price_screen.dart';
 
 enum TileType {
   purchasePrice,
   purchaseDate,
-  warrantyPriod,
+  warrantyPriod;
 }
 
 extension TileTypeExtension on TileType {
@@ -35,7 +35,8 @@ extension TileTypeExtension on TileType {
     return DateFormat.yMMMMd().format(date); // TODO: 日本語表示に直す
   }
 
-  String getTrailingText(HitProduct item) {
+  String getTrailingText(ProductData productData, String id) {
+    var item = productData.searchMyItemWithID(id);
     switch (this) {
       case TileType.purchasePrice:
         return _priceFormatter(item.purchasePrice);
@@ -46,12 +47,13 @@ extension TileTypeExtension on TileType {
     }
   }
 
-  Widget getWidget(HitProduct item) {
+  Widget getWidget(ProductData productData, String id) {
+    var item = productData.searchMyItemWithID(id);
     switch (this) {
       case TileType.purchasePrice:
         return UpdatePriceScreen(
           onOKPressed: (price) {
-            item.updateMyItem(price, item.purchaseDate, item.warrantyPriod);
+            productData.updatePurchasePrice(id, price);
           },
         );
       case TileType.purchaseDate:
@@ -59,7 +61,7 @@ extension TileTypeExtension on TileType {
           tileType: TileType.purchaseDate,
           selectedDate: item.purchaseDate,
           onDateTimeChanged: (date) {
-            item.updateMyItem(item.purchasePrice, date, item.warrantyPriod);
+            productData.updatePurchaseDate(id, date);
           },
         );
       case TileType.warrantyPriod:
@@ -67,7 +69,7 @@ extension TileTypeExtension on TileType {
           tileType: TileType.warrantyPriod,
           selectedDate: item.warrantyPriod,
           onDateTimeChanged: (date) {
-            item.updateMyItem(item.purchasePrice, item.purchaseDate, date);
+            productData.updateWarrantyPriod(id, date);
           },
         );
     }

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:item_dex/models/product.dart';
 import 'package:item_dex/models/product_data.dart';
-import 'package:item_dex/screens/item_detail_screen.dart';
-import 'package:item_dex/screens/search_screen.dart';
-import 'package:item_dex/widgets/item_dex_text.dart';
-import 'package:item_dex/widgets/my_item_sizedbox.dart';
+import 'package:item_dex/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 // 非同期処理のためmain関数をFutureに変更
@@ -26,60 +22,9 @@ class MainApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           ),
-          home: const MyHomePage(),
+          home: const HomeScreen(),
         );
       },
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<ProductData>();
-    final itemDexText = ItemDexText();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: itemDexText.createHeaderTitle('マイアイテム'),
-      ),
-      body: ListView(
-        children: appState.myItems
-            .map((myItem) => MyItemSizedBox(
-                  hitProduct: myItem,
-                  myItemTappedCallback: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return ChangeNotifierProvider(
-                          create: (context) => HitProduct(
-                            name: myItem.name,
-                            brand: myItem.brand,
-                            image: myItem.image,
-                          ),
-                          builder: (context, child) {
-                            return const ItemDetailScreen();
-                          },
-                        );
-                      }),
-                    );
-                  },
-                ))
-            .toList(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SearchScreen(),
-            ),
-          );
-        },
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class Info {
   final List<HitProduct> hitProducts;
@@ -19,7 +19,8 @@ class Info {
   }
 }
 
-class HitProduct extends ChangeNotifier {
+class HitProduct {
+  final String id = const Uuid().v4();
   final String name;
   final ImageURL image;
   final Brand brand;
@@ -45,17 +46,6 @@ class HitProduct extends ChangeNotifier {
       image: ImageURL.fromJson(json['image']),
       brand: Brand.fromJson(json['brand']),
     );
-  }
-
-  void updateMyItem(
-    int? purchasePrice,
-    DateTime purchaseDate,
-    DateTime warrantyPriod,
-  ) {
-    this.purchaseDate = purchaseDate;
-    this.purchasePrice = purchasePrice;
-    this.warrantyPriod = warrantyPriod;
-    notifyListeners();
   }
 }
 
