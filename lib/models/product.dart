@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class Info {
   final List<HitProduct> hitProducts;
@@ -20,6 +21,7 @@ class Info {
 }
 
 class HitProduct extends ChangeNotifier {
+  final String id = const Uuid().v4();
   final String name;
   final ImageURL image;
   final Brand brand;
