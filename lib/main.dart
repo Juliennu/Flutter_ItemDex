@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:item_dex/screens/home_screen.dart';
+import 'package:item_dex/screens/home/home_screen.dart';
 
 // 非同期処理のためmain関数をFutureに変更
 Future<void> main() async {
