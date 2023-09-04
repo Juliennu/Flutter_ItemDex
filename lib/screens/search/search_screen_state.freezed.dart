@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchScreenState {
+  List<HitProduct> get searchResults => throw _privateConstructorUsedError;
   bool get isSearching => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,7 @@ abstract class $SearchScreenStateCopyWith<$Res> {
           SearchScreenState value, $Res Function(SearchScreenState) then) =
       _$SearchScreenStateCopyWithImpl<$Res, SearchScreenState>;
   @useResult
-  $Res call({bool isSearching});
+  $Res call({List<HitProduct> searchResults, bool isSearching});
 }
 
 /// @nodoc
@@ -45,9 +46,14 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? searchResults = null,
     Object? isSearching = null,
   }) {
     return _then(_value.copyWith(
+      searchResults: null == searchResults
+          ? _value.searchResults
+          : searchResults // ignore: cast_nullable_to_non_nullable
+              as List<HitProduct>,
       isSearching: null == isSearching
           ? _value.isSearching
           : isSearching // ignore: cast_nullable_to_non_nullable
@@ -64,7 +70,7 @@ abstract class _$$_SearchScreenStateCopyWith<$Res>
       __$$_SearchScreenStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isSearching});
+  $Res call({List<HitProduct> searchResults, bool isSearching});
 }
 
 /// @nodoc
@@ -78,9 +84,14 @@ class __$$_SearchScreenStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? searchResults = null,
     Object? isSearching = null,
   }) {
     return _then(_$_SearchScreenState(
+      searchResults: null == searchResults
+          ? _value._searchResults
+          : searchResults // ignore: cast_nullable_to_non_nullable
+              as List<HitProduct>,
       isSearching: null == isSearching
           ? _value.isSearching
           : isSearching // ignore: cast_nullable_to_non_nullable
@@ -92,7 +103,19 @@ class __$$_SearchScreenStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SearchScreenState implements _SearchScreenState {
-  const _$_SearchScreenState({this.isSearching = false});
+  const _$_SearchScreenState(
+      {final List<HitProduct> searchResults = const <HitProduct>[],
+      this.isSearching = false})
+      : _searchResults = searchResults;
+
+  final List<HitProduct> _searchResults;
+  @override
+  @JsonKey()
+  List<HitProduct> get searchResults {
+    if (_searchResults is EqualUnmodifiableListView) return _searchResults;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchResults);
+  }
 
   @override
   @JsonKey()
@@ -100,7 +123,7 @@ class _$_SearchScreenState implements _SearchScreenState {
 
   @override
   String toString() {
-    return 'SearchScreenState(isSearching: $isSearching)';
+    return 'SearchScreenState(searchResults: $searchResults, isSearching: $isSearching)';
   }
 
   @override
@@ -108,12 +131,15 @@ class _$_SearchScreenState implements _SearchScreenState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchScreenState &&
+            const DeepCollectionEquality()
+                .equals(other._searchResults, _searchResults) &&
             (identical(other.isSearching, isSearching) ||
                 other.isSearching == isSearching));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isSearching);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_searchResults), isSearching);
 
   @JsonKey(ignore: true)
   @override
@@ -124,9 +150,12 @@ class _$_SearchScreenState implements _SearchScreenState {
 }
 
 abstract class _SearchScreenState implements SearchScreenState {
-  const factory _SearchScreenState({final bool isSearching}) =
-      _$_SearchScreenState;
+  const factory _SearchScreenState(
+      {final List<HitProduct> searchResults,
+      final bool isSearching}) = _$_SearchScreenState;
 
+  @override
+  List<HitProduct> get searchResults;
   @override
   bool get isSearching;
   @override

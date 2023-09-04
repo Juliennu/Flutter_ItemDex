@@ -6,7 +6,6 @@ part 'app_state.freezed.dart';
 @freezed
 class AppState with _$AppState {
   const factory AppState({
-    @Default(<HitProduct>[]) List<HitProduct> searchResults,
     @Default(<HitProduct>[]) List<HitProduct> myItems,
   }) = _AppState;
 }

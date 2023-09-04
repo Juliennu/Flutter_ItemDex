@@ -5,21 +5,18 @@ import 'package:item_dex/repositories/products_repository.dart';
 
 final appStateServiceProvider =
     StateNotifierProvider<AppStateService, AppState>(
-  (ref) => AppStateService(),
+  (ref) => AppStateService(
+    productsRepository: ProductsRepositoryImpl(),
+  ),
 );
 
 class AppStateService extends StateNotifier<AppState> {
-  final productsRepository = ProductsRepository();
+  final ProductsRepositoryImpl productsRepository;
 
-  AppStateService() : super(const AppState()) {
+  AppStateService({
+    required this.productsRepository,
+  }) : super(const AppState()) {
     // If required: Do something here to initialize this service
-  }
-
-  Future searchProduct(String keyword) async {
-    final searchResults = await productsRepository.searchProduct(keyword);
-    state = state.copyWith(
-      searchResults: searchResults,
-    );
   }
 
   void addToFavourites(HitProduct hitProduct) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:item_dex/common/app_state_service.dart';
+import 'package:item_dex/repositories/products_repository.dart';
 import 'package:item_dex/screens/search/search_screen_state.dart';
 import 'package:item_dex/screens/search/search_screen_view_model.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
@@ -11,7 +12,9 @@ import 'package:item_dex/widgets/product_sizedbox.dart';
 ///
 final _provider =
     StateNotifierProvider.autoDispose<SearchScreenViewModel, SearchScreenState>(
-  (ref) => SearchScreenViewModel(),
+  (ref) => SearchScreenViewModel(
+    productsRepository: ProductsRepositoryImpl(),
+  ),
 );
 
 class SearchScreen extends ConsumerWidget {
@@ -19,7 +22,6 @@ class SearchScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch(appStateServiceProvider);
     final state = ref.watch(_provider);
 
     final itemDexText = ItemDexText();
@@ -49,9 +51,7 @@ class SearchScreen extends ConsumerWidget {
                   ),
                   onSubmitted: (String keyWord) async {
                     ref.read(_provider.notifier).isSearching = true;
-                    await ref
-                        .read(appStateServiceProvider.notifier)
-                        .searchProduct(keyWord);
+                    await ref.read(_provider.notifier).searchProduct(keyWord);
                     ref.read(_provider.notifier).isSearching = false;
                   },
                 ),
@@ -60,13 +60,13 @@ class SearchScreen extends ConsumerWidget {
                 const LinearProgressIndicator(
                   backgroundColor: Colors.transparent,
                   valueColor: AlwaysStoppedAnimation(Colors.red),
-                  minHeight: 8,
+                  minHeight: 6,
                 ),
             ],
           ),
           Expanded(
             child: ListView(
-              children: appState.searchResults
+              children: state.searchResults
                   .map(
                     (hitProduct) => ProductSizedBox(
                       hitProduct: hitProduct,

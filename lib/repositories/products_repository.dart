@@ -4,7 +4,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:item_dex/models/product.dart';
 
-class ProductsRepository {
+abstract class ProductsRepository {
+  Future<List<HitProduct>> searchProduct(String keyword);
+}
+
+class ProductsRepositoryImpl extends ProductsRepository {
+
+  @override
   Future<List<HitProduct>> searchProduct(String keyword) async {
     // 1. http通信に必要なデータを準備をする
     final String token = dotenv.env['YAHOO_API_APP_ID'] ?? '';

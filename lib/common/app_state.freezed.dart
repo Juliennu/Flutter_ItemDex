@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppState {
-  List<HitProduct> get searchResults => throw _privateConstructorUsedError;
   List<HitProduct> get myItems => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +28,7 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({List<HitProduct> searchResults, List<HitProduct> myItems});
+  $Res call({List<HitProduct> myItems});
 }
 
 /// @nodoc
@@ -45,14 +44,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchResults = null,
     Object? myItems = null,
   }) {
     return _then(_value.copyWith(
-      searchResults: null == searchResults
-          ? _value.searchResults
-          : searchResults // ignore: cast_nullable_to_non_nullable
-              as List<HitProduct>,
       myItems: null == myItems
           ? _value.myItems
           : myItems // ignore: cast_nullable_to_non_nullable
@@ -68,7 +62,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       __$$_AppStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<HitProduct> searchResults, List<HitProduct> myItems});
+  $Res call({List<HitProduct> myItems});
 }
 
 /// @nodoc
@@ -82,14 +76,9 @@ class __$$_AppStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchResults = null,
     Object? myItems = null,
   }) {
     return _then(_$_AppState(
-      searchResults: null == searchResults
-          ? _value._searchResults
-          : searchResults // ignore: cast_nullable_to_non_nullable
-              as List<HitProduct>,
       myItems: null == myItems
           ? _value._myItems
           : myItems // ignore: cast_nullable_to_non_nullable
@@ -101,20 +90,8 @@ class __$$_AppStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppState implements _AppState {
-  const _$_AppState(
-      {final List<HitProduct> searchResults = const <HitProduct>[],
-      final List<HitProduct> myItems = const <HitProduct>[]})
-      : _searchResults = searchResults,
-        _myItems = myItems;
-
-  final List<HitProduct> _searchResults;
-  @override
-  @JsonKey()
-  List<HitProduct> get searchResults {
-    if (_searchResults is EqualUnmodifiableListView) return _searchResults;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_searchResults);
-  }
+  const _$_AppState({final List<HitProduct> myItems = const <HitProduct>[]})
+      : _myItems = myItems;
 
   final List<HitProduct> _myItems;
   @override
@@ -127,7 +104,7 @@ class _$_AppState implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(searchResults: $searchResults, myItems: $myItems)';
+    return 'AppState(myItems: $myItems)';
   }
 
   @override
@@ -135,16 +112,12 @@ class _$_AppState implements _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppState &&
-            const DeepCollectionEquality()
-                .equals(other._searchResults, _searchResults) &&
             const DeepCollectionEquality().equals(other._myItems, _myItems));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_searchResults),
-      const DeepCollectionEquality().hash(_myItems));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_myItems));
 
   @JsonKey(ignore: true)
   @override
@@ -154,12 +127,8 @@ class _$_AppState implements _AppState {
 }
 
 abstract class _AppState implements AppState {
-  const factory _AppState(
-      {final List<HitProduct> searchResults,
-      final List<HitProduct> myItems}) = _$_AppState;
+  const factory _AppState({final List<HitProduct> myItems}) = _$_AppState;
 
-  @override
-  List<HitProduct> get searchResults;
   @override
   List<HitProduct> get myItems;
   @override
