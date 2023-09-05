@@ -54,11 +54,9 @@ class MyItemDetailListTile extends ConsumerWidget {
         case TileType.purchasePrice:
           return UpdatePriceScreen(
             onOKPressed: (price) {
-              // 上書きする
-              appState.myItems
-                  .firstWhere((item) => item.id == itemID)
-                  .purchasePrice = price;
-              // productData.updatePurchasePrice(id, price);
+              ref
+                  .watch(appStateServiceProvider.notifier)
+                  .updatePurchasePrice(itemID, price);
             },
           );
         case TileType.purchaseDate:
@@ -66,9 +64,9 @@ class MyItemDetailListTile extends ConsumerWidget {
             tileType: TileType.purchaseDate,
             selectedDate: item.purchaseDate,
             onDateTimeChanged: (date) {
-              appState.myItems
-                  .firstWhere((item) => item.id == itemID)
-                  .purchaseDate = date;
+              ref
+                  .watch(appStateServiceProvider.notifier)
+                  .updatePurchaseDate(itemID, date);
             },
           );
         case TileType.warrantyPriod:
@@ -76,9 +74,9 @@ class MyItemDetailListTile extends ConsumerWidget {
             tileType: TileType.warrantyPriod,
             selectedDate: item.warrantyPriod,
             onDateTimeChanged: (date) {
-              appState.myItems
-                  .firstWhere((item) => item.id == itemID)
-                  .warrantyPriod = date;
+              ref
+                  .watch(appStateServiceProvider.notifier)
+                  .updateWarrantyDate(itemID, date);
             },
           );
       }

@@ -71,7 +71,6 @@ class SearchScreen extends ConsumerWidget {
                     (hitProduct) => ProductSizedBox(
                       hitProduct: hitProduct,
                       dialogButtonOnTapCallback: () {
-                        print('商品情報: $hitProduct');
                         ref
                             .read(appStateServiceProvider.notifier)
                             .addToFavourites(hitProduct);

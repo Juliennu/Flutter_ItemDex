@@ -26,4 +26,44 @@ class AppStateService extends StateNotifier<AppState> {
       myItems: myItems,
     );
   }
+
+  void updatePurchasePrice(String id, int? price) {
+    // TODO: [リファクタ] map 内でif を使わずに更新したい
+    var updatedItems = [...state.myItems].map((item) {
+      if (item.id == id) {
+        item.purchasePrice = price;
+      }
+      return item;
+    }).toList();
+
+    state = state.copyWith(
+      myItems: updatedItems,
+    );
+  }
+
+  void updatePurchaseDate(String id, DateTime date) {
+    var updatedItems = [...state.myItems].map((item) {
+      if (item.id == id) {
+        item.purchaseDate = date;
+      }
+      return item;
+    }).toList();
+
+    state = state.copyWith(
+      myItems: updatedItems,
+    );
+  }
+
+  void updateWarrantyDate(String id, DateTime date) {
+    var updatedItems = [...state.myItems].map((item) {
+      if (item.id == id) {
+        item.warrantyPriod = date;
+      }
+      return item;
+    }).toList();
+
+    state = state.copyWith(
+      myItems: updatedItems,
+    );
+  }
 }
