@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:item_dex/common/global_state.dart';
-import 'package:item_dex/screens/item_detail_screen.dart';
-import 'package:item_dex/screens/search_screen.dart';
+import 'package:item_dex/common/app_state_service.dart';
+import 'package:item_dex/screens/item_detail/item_detail_screen.dart';
+import 'package:item_dex/screens/search/search_screen.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
 import 'package:item_dex/widgets/my_item_sizedbox.dart';
 
@@ -11,7 +11,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myItems = ref.read(GlobalState().myItemsProvider);
+    final appState = ref.watch(appStateServiceProvider);
+
     final itemDexText = ItemDexText();
 
     return Scaffold(
@@ -19,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
         title: itemDexText.createHeaderTitle('マイアイテム'),
       ),
       body: ListView(
-        children: myItems
+        children: appState.myItems
             .map((myItem) => MyItemSizedBox(
                   hitProduct: myItem,
                   myItemTappedCallback: () {

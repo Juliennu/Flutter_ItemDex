@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:item_dex/common/global_state.dart';
+import 'package:item_dex/common/app_state_service.dart';
 import 'package:item_dex/models/product.dart';
 import 'package:item_dex/models/tile_type.dart';
-import 'package:item_dex/screens/select_date_screen.dart';
-import 'package:item_dex/screens/update_price_screen.dart';
+import 'package:item_dex/screens/select_date/select_date_screen.dart';
+import 'package:item_dex/screens/update_price/update_price_screen.dart';
 
 class MyItemDetailListTile extends ConsumerWidget {
   final TileType tileType;
   final String itemID;
+
   const MyItemDetailListTile({
     super.key,
     required this.tileType,
@@ -18,9 +19,10 @@ class MyItemDetailListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myItems = ref.read(GlobalState().myItemsProvider.notifier);
+    final appState = ref.watch(appStateServiceProvider);
+
     final HitProduct item =
-        myItems.state.firstWhere((item) => item.id == itemID);
+        appState.myItems.firstWhere((item) => item.id == itemID);
 
     String priceFormatter(int? price) {
       if (price == null) {
@@ -53,7 +55,7 @@ class MyItemDetailListTile extends ConsumerWidget {
           return UpdatePriceScreen(
             onOKPressed: (price) {
               // 上書きする
-              myItems.state
+              appState.myItems
                   .firstWhere((item) => item.id == itemID)
                   .purchasePrice = price;
               // productData.updatePurchasePrice(id, price);
@@ -64,7 +66,7 @@ class MyItemDetailListTile extends ConsumerWidget {
             tileType: TileType.purchaseDate,
             selectedDate: item.purchaseDate,
             onDateTimeChanged: (date) {
-              myItems.state
+              appState.myItems
                   .firstWhere((item) => item.id == itemID)
                   .purchaseDate = date;
             },
@@ -74,7 +76,7 @@ class MyItemDetailListTile extends ConsumerWidget {
             tileType: TileType.warrantyPriod,
             selectedDate: item.warrantyPriod,
             onDateTimeChanged: (date) {
-              myItems.state
+              appState.myItems
                   .firstWhere((item) => item.id == itemID)
                   .warrantyPriod = date;
             },
