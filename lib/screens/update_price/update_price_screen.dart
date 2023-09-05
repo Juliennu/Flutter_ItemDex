@@ -48,8 +48,7 @@ class UpdatePriceScreen extends StatelessWidget {
                     ),
                   ),
                   onChanged: (priceText) {
-                    int? price =
-                        int.parse(priceText); // FIXME: null が入力されるとクラッシュする
+                    var price = int.tryParse(priceText);
                     updatedPrice = price;
                   },
                 ),
