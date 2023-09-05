@@ -26,9 +26,9 @@ class HitProduct {
   final Brand brand;
 
   int? purchasePrice;
-  final now = DateTime.now();
   late DateTime purchaseDate;
   late DateTime warrantyPriod;
+  final _now = DateTime.now();
 
   HitProduct({
     required this.name,
@@ -36,8 +36,8 @@ class HitProduct {
     required this.brand,
     this.purchasePrice,
   }) {
-    purchaseDate = now;
-    warrantyPriod = DateTime(now.year + 1, now.month, now.day);
+    purchaseDate = _now;
+    warrantyPriod = DateTime(_now.year + 1, _now.month, _now.day);
   }
 
   factory HitProduct.fromJson(Map<String, dynamic> json) {

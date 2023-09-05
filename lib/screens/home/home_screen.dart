@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:item_dex/models/product_data.dart';
-import 'package:item_dex/screens/item_detail_screen.dart';
-import 'package:item_dex/screens/search_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:item_dex/common/app_state_service.dart';
+import 'package:item_dex/screens/item_detail/item_detail_screen.dart';
+import 'package:item_dex/screens/search/search_screen.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
 import 'package:item_dex/widgets/my_item_sizedbox.dart';
-import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<ProductData>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch(appStateServiceProvider);
+
     final itemDexText = ItemDexText();
 
     return Scaffold(
