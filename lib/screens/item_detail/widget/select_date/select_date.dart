@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:item_dex/models/tile_type.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
-class SelectDateScreen extends StatelessWidget {
+class SelectDate extends StatelessWidget {
   final TileType tileType;
   final DateTime selectedDate;
   final ValueChanged<DateTime> onDateTimeChanged;
 
-  const SelectDateScreen({
+  const SelectDate({
     super.key,
     required this.tileType,
     required this.selectedDate,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class UpdatePriceScreen extends StatelessWidget {
+class UpdatePrice extends StatelessWidget {
   final int? purchasePrice;
   final Function(int?) onOKPressed;
 
-  const UpdatePriceScreen({
+  const UpdatePrice({
     super.key,
     this.purchasePrice,
     required this.onOKPressed,

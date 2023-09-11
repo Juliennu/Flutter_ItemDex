@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:item_dex/models/product.dart';
 import 'package:item_dex/models/tile_type.dart';
+import 'package:item_dex/screens/item_detail/widget/my_item_detail_listtile.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
-import 'package:item_dex/widgets/my_item_detail_listtile.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   final HitProduct item;

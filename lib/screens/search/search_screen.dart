@@ -4,8 +4,8 @@ import 'package:item_dex/common/app_state_service.dart';
 import 'package:item_dex/repositories/products_repository.dart';
 import 'package:item_dex/screens/search/search_screen_state.dart';
 import 'package:item_dex/screens/search/search_screen_view_model.dart';
+import 'package:item_dex/screens/search/widget/product_sizedbox.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';
-import 'package:item_dex/widgets/product_sizedbox.dart';
 
 /// Private provider
 /// Only to be used in this Screen

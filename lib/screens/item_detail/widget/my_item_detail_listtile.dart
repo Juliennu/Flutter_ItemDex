@@ -4,8 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:item_dex/common/app_state_service.dart';
 import 'package:item_dex/models/product.dart';
 import 'package:item_dex/models/tile_type.dart';
-import 'package:item_dex/screens/select_date/select_date_screen.dart';
-import 'package:item_dex/screens/update_price/update_price_screen.dart';
+import 'package:item_dex/screens/item_detail/widget/select_date/select_date.dart';
+import 'package:item_dex/screens/item_detail/widget/update_price/update_price.dart';
 
 class MyItemDetailListTile extends ConsumerWidget {
   final TileType tileType;
@@ -52,7 +52,7 @@ class MyItemDetailListTile extends ConsumerWidget {
     Widget getModalWidget() {
       switch (tileType) {
         case TileType.purchasePrice:
-          return UpdatePriceScreen(
+          return UpdatePrice(
             onOKPressed: (price) {
               ref
                   .watch(appStateServiceProvider.notifier)
@@ -60,7 +60,7 @@ class MyItemDetailListTile extends ConsumerWidget {
             },
           );
         case TileType.purchaseDate:
-          return SelectDateScreen(
+          return SelectDate(
             tileType: TileType.purchaseDate,
             selectedDate: item.purchaseDate,
             onDateTimeChanged: (date) {
@@ -70,7 +70,7 @@ class MyItemDetailListTile extends ConsumerWidget {
             },
           );
         case TileType.warrantyPriod:
-          return SelectDateScreen(
+          return SelectDate(
             tileType: TileType.warrantyPriod,
             selectedDate: item.warrantyPriod,
             onDateTimeChanged: (date) {
