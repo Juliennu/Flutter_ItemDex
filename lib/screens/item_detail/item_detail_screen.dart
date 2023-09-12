@@ -14,6 +14,83 @@ class ItemDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemDexText = ItemDexText();
+    Widget headerContents() {
+      return Container(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        padding: const EdgeInsets.all(4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            // Textを改行して表示
+            Flexible(
+              child: Text(
+                item.name,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              item.brand.name,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget image() {
+      return Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SizedBox(
+          height: 150,
+          width: 150,
+          child: Image.network(item.image.medium),
+        ),
+      );
+    }
+
+    Widget userCreatedContents() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity, // 横幅いっぱいに広げる
+            color: Theme.of(context).colorScheme.primaryContainer,
+            padding: const EdgeInsets.all(4),
+            child: const Text(
+              'ユーザー入力欄',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          MyItemDetailListTile(
+            tileType: TileType.purchasePrice,
+            itemID: item.id,
+          ),
+          MyItemDetailListTile(
+            tileType: TileType.purchaseDate,
+            itemID: item.id,
+          ),
+          MyItemDetailListTile(
+            tileType: TileType.warrantyPriod,
+            itemID: item.id,
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: itemDexText.createHeaderTitle('アイテム詳細'),
@@ -22,76 +99,11 @@ class ItemDetailScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                padding: const EdgeInsets.all(4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    // Textを改行して表示
-                    Flexible(
-                      child: Text(
-                        item.name,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      item.brand.name,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.network(item.image.medium),
-                ),
-              ),
+              headerContents(),
+              image(),
+              userCreatedContents(),
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity, // 横幅いっぱいに広げる
-                color: Theme.of(context).colorScheme.primaryContainer,
-                padding: const EdgeInsets.all(4),
-                child: const Text(
-                  'ユーザー入力欄',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              MyItemDetailListTile(
-                tileType: TileType.purchasePrice,
-                itemID: item.id,
-              ),
-              MyItemDetailListTile(
-                tileType: TileType.purchaseDate,
-                itemID: item.id,
-              ),
-              MyItemDetailListTile(
-                tileType: TileType.warrantyPriod,
-                itemID: item.id,
-              ),
-            ],
-          )
         ],
       ),
     );
