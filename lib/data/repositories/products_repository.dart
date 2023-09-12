@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:item_dex/models/product.dart';
+import 'package:item_dex/data/models/product.dart';
 
 abstract class ProductsRepository {
   Future<List<HitProduct>> searchProduct(String keyword);
 }
 
 class ProductsRepositoryImpl extends ProductsRepository {
-
   @override
   Future<List<HitProduct>> searchProduct(String keyword) async {
     // 1. http通信に必要なデータを準備をする

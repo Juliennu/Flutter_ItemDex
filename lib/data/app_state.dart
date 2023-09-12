@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:item_dex/models/product.dart';
+import 'package:item_dex/data/models/product.dart';
 
 part 'app_state.freezed.dart';
 

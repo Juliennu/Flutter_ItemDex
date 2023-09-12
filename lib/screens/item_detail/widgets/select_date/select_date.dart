@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:item_dex/models/tile_type.dart';
+import 'package:item_dex/screens/item_detail/enums/tile_type.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 class SelectDate extends StatelessWidget {

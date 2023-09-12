@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:item_dex/common/app_state_service.dart';
-import 'package:item_dex/screens/home/widget/my_item_sizedbox.dart';
+import 'package:item_dex/data/services/app_state_service.dart';
+import 'package:item_dex/screens/home/widgets/my_item_sizedbox.dart';
 import 'package:item_dex/screens/item_detail/item_detail_screen.dart';
 import 'package:item_dex/screens/search/search_screen.dart';
 import 'package:item_dex/widgets/item_dex_text.dart';

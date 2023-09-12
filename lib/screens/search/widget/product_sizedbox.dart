@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:item_dex/models/product.dart';
+import 'package:item_dex/data/models/product.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ProductSizedBox extends StatelessWidget {

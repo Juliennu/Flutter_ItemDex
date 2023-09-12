@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:item_dex/common/app_state_service.dart';
-import 'package:item_dex/models/product.dart';
-import 'package:item_dex/models/tile_type.dart';
-import 'package:item_dex/screens/item_detail/widget/select_date/select_date.dart';
-import 'package:item_dex/screens/item_detail/widget/update_price/update_price.dart';
+import 'package:item_dex/data/models/product.dart';
+import 'package:item_dex/data/services/app_state_service.dart';
+import 'package:item_dex/screens/item_detail/enums/tile_type.dart';
+import 'package:item_dex/screens/item_detail/widgets/select_date/select_date.dart';
+import 'package:item_dex/screens/item_detail/widgets/update_price/update_price.dart';
 
 class MyItemDetailListTile extends ConsumerWidget {
   final TileType tileType;

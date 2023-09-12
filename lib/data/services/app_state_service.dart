@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:item_dex/common/app_state.dart';
-import 'package:item_dex/models/product.dart';
-import 'package:item_dex/repositories/products_repository.dart';
+import 'package:item_dex/data/app_state.dart';
+import 'package:item_dex/data/models/product.dart';
+import 'package:item_dex/data/repositories/products_repository.dart';
 
 final appStateServiceProvider =
     StateNotifierProvider<AppStateService, AppState>(
