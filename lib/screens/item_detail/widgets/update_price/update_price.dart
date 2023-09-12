@@ -15,6 +15,45 @@ class UpdatePrice extends StatelessWidget {
   Widget build(BuildContext context) {
     int? updatedPrice = purchasePrice;
 
+    Widget textField() {
+      return TextField(
+        // 入力ソースを数値のみに制限
+        keyboardType: TextInputType.number,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        autofocus: true,
+        autocorrect: false,
+        textAlign: TextAlign.center,
+        decoration: const InputDecoration(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              width: 4,
+            ),
+          ),
+        ),
+        onChanged: (priceText) {
+          var price = int.tryParse(priceText);
+          updatedPrice = price;
+        },
+      );
+    }
+
+    Widget okButton() {
+      return FilledButton(
+        style: FilledButton.styleFrom(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(0),
+            ),
+          ),
+        ),
+        onPressed: () {
+          onOKPressed(updatedPrice);
+          Navigator.pop(context);
+        },
+        child: const Text('OK'),
+      );
+    }
+
     // keyboard をスクロール範囲に入れる
     return SingleChildScrollView(
       child: Container(
@@ -33,42 +72,11 @@ class UpdatePrice extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextField(
-                  // 入力ソースを数値のみに制限
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  autofocus: true,
-                  autocorrect: false,
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 4,
-                      ),
-                    ),
-                  ),
-                  onChanged: (priceText) {
-                    var price = int.tryParse(priceText);
-                    updatedPrice = price;
-                  },
-                ),
+                textField(),
                 const SizedBox(
                   height: 20,
                 ),
-                FilledButton(
-                  style: FilledButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(0),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    onOKPressed(updatedPrice);
-                    Navigator.pop(context);
-                  },
-                  child: const Text('OK'),
-                ),
+                okButton(),
               ],
             ),
           ),

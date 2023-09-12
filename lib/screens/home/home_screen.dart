@@ -15,11 +15,8 @@ class HomeScreen extends ConsumerWidget {
 
     final itemDexText = ItemDexText();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: itemDexText.createHeaderTitle('マイアイテム'),
-      ),
-      body: ListView(
+    Widget myItemListContents() {
+      return ListView(
         children: appState.myItems
             .map((myItem) => MyItemSizedBox(
                   hitProduct: myItem,
@@ -35,8 +32,11 @@ class HomeScreen extends ConsumerWidget {
                   },
                 ))
             .toList(),
-      ),
-      floatingActionButton: FloatingActionButton(
+      );
+    }
+
+    Widget floatingActionButton() {
+      return FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
@@ -46,7 +46,15 @@ class HomeScreen extends ConsumerWidget {
           );
         },
         child: const Icon(Icons.add),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: itemDexText.createHeaderTitle('マイアイテム'),
       ),
+      body: myItemListContents(),
+      floatingActionButton: floatingActionButton(),
     );
   }
 }
