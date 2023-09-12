@@ -57,9 +57,10 @@ class SearchScreen extends ConsumerWidget {
                 ),
               ),
               if (state.isSearching)
-                const LinearProgressIndicator(
+                LinearProgressIndicator(
                   backgroundColor: Colors.transparent,
-                  valueColor: AlwaysStoppedAnimation(Colors.red),
+                  valueColor:
+                      AlwaysStoppedAnimation(Theme.of(context).indicatorColor),
                   minHeight: 6,
                 ),
             ],
